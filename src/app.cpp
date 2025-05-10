@@ -4,7 +4,7 @@
 
 // Constructor
 App::App() {
-    init();
+    this->init();
 }  // End of the 'constructor'
 
 void App::init() {
@@ -13,28 +13,7 @@ void App::init() {
     // call it once after creating the window
     window.setVerticalSyncEnabled(true); 
     window.setFramerateLimit(60);
-
-    // load_background(background, "assets/images/jungle-palm-trees.png");
-    load_background(background, BG_IMAGE);
 }  // End of the 'init' function
-
-void App::load_background(SpritePtr& sprite, const std::string& file_path) {
-    // 1. Load the image
-    sf::Image img;
-    if (!img.loadFromFile(file_path)) {
-        std::cerr << "Error loading image!" << std::endl;
-        return;
-    }
-
-    // 2. Create a texture
-    sf::Texture texture;
-    if (!texture.loadFromImage(img)) {
-        std::cerr << "Error loading texture!" << std::endl;
-        return;
-    }
-
-    sprite->setTexture(texture, false);
-}  // End of the 'load_background' function
 
 void App::run() {
     // run the program as long as the window is open
@@ -43,8 +22,8 @@ void App::run() {
         while (const std::optional event = window.pollEvent()) {
             // "close requested" event: we close the window
             if (event->is<sf::Event::Closed>()) {
-                std::cout << "Aufweidersehen" << std::endl;
-                window.close();
+                std::cout << "Goodbye" << std::endl;
+                window.close();  // breaks the loop
             }
         }
         
@@ -53,7 +32,7 @@ void App::run() {
 
         // draw everything here...
         // Draw the background
-        window.draw(background);
+        window.draw(background.getSprite());
 
         // end the current frame
         window.display();

@@ -19,6 +19,11 @@ const std::string THEME_SONG = "assets/audio/SwayThisWay.wav";
 const std::string FONT_BOLD = "assets/fonts/AmaticSC-Bold.ttf";
 const std::string FONT_REGULAR = "assets/fonts/AmaticSC-Regular.ttf";
 
+// Sprite types
+const std::string SPRITE_BG = "SPRITE_BG";
+const std::string SPRITE_KOALA = "SPTITE_KOALA";
+const std::string SPRITE_COCONUT = "SPRITE_COCONUT";
+
 #endif /* UTILS_H */
 
 // END OF FILE

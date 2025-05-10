@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.31.3)
 
 project(darts LANGUAGES CXX)
 
-set(SOURCE_FILES src/main.cpp src/app.cpp)
+set(SOURCE_FILES src/main.cpp src/app.cpp src/BackgroundSprite.cpp)
 
 # Find SFML package
 # find_package(SFML REQUIRED)  # couldn't find it
