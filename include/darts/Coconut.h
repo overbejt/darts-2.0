@@ -1,0 +1,29 @@
+#ifndef COCONUT_H
+#define COCONUT_H
+#include <SFML/Graphics.hpp>
+#include <string>
+#include "utils.h"
+
+class Coconut {
+    protected:
+        const std::string img_path = COCONUT;
+        sf::Image img;
+        sf::Texture texture;
+        sf::Sprite sprite;
+        int maxHeight;
+        int maxWidth;
+        bool collision = false;
+        bool collisionAudioPlayed = false;
+        void init();
+    public:
+        Coconut();
+        void setMaxHeight(int maxHeight);
+        void setMaxWidth(int maxWidth);
+        sf::Sprite getSprite();
+        int getRandomX();
+        void move(float ammount);
+};  // End of the 'Coconut' class
+
+#endif /* COCONUT_H */
+
+// END OF FILE

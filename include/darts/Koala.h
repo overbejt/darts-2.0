@@ -10,14 +10,12 @@ class Koala {
         sf::Image img;
         sf::Texture texture;
         sf::Sprite sprite;
-        // TODO Add location so it can move
         void init();
     public:
         Koala();
         sf::Sprite getSprite();
         void move(float ammount);
-        // TODO Add a function that can update its position L/R
-};  // End of the 'Background' class
+};  // End of the 'Koala' class
 
 #endif /* KOALA_H */
 
