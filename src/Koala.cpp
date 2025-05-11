@@ -1,12 +1,12 @@
 #include <iostream>
-#include "darts/BackgroundSprite.h"
+#include "darts/Koala.h"
 
 // Constructor
-BackgroundSprite::BackgroundSprite() : img(), texture(), sprite(texture) {
+Koala::Koala() : img(), texture(), sprite(texture) {
     this->init();
 }  // End of the 'constructor'
 
-void BackgroundSprite::init() {
+void Koala::init() {
     // 1. Load the image
     if (!img.loadFromFile(img_path)) {
         std::cerr << "Error loading image!" << std::endl;
@@ -21,11 +21,18 @@ void BackgroundSprite::init() {
     
     // 3. Setup the sprite
     sprite.setTexture(texture);
-    sprite.setTextureRect(sf::IntRect({0, 0}, {1200, 647}));
+    // TODO avoid magic numbers    
+    sprite.setTextureRect(sf::IntRect({0, 0}, {125, 125}));
+    // Perfect.  Just a little right of center
+    sprite.setPosition({600.f, (647-125)});
 }  // End of the 'init' funciton
 
-sf::Sprite BackgroundSprite::getSprite() {
+sf::Sprite Koala::getSprite() {
     return sprite;
 }  // End of the 'getSprite' function
+
+void Koala::move(float ammount) {
+    sprite.move({ammount, 0.f});
+}  // End of the 'move' function
 
 // END OF FILE

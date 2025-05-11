@@ -20,6 +20,14 @@ void App::run() {
     while (window.isOpen()) {
         // check all the window's events that were triggered since the last iteration of the loop
         while (const std::optional event = window.pollEvent()) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
+                // left key is pressed: move our character
+                koala.move(-15.f);
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+                // right key is pressed: move our character
+                koala.move(15.f);
+            }
             // "close requested" event: we close the window
             if (event->is<sf::Event::Closed>()) {
                 std::cout << "Goodbye" << std::endl;
@@ -33,6 +41,7 @@ void App::run() {
         // draw everything here...
         // Draw the background
         window.draw(background.getSprite());
+        window.draw(koala.getSprite());
 
         // end the current frame
         window.display();

@@ -1,10 +1,10 @@
-#ifndef BACKGROUND_SPRITE_H
-#define BACKGROUND_SPRITE_H
+#ifndef BACKGROUND_H
+#define BACKGROUND_H
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "utils.h"
 
-class BackgroundSprite {
+class Background {
     protected:
         const std::string img_path = BG_IMAGE;
         sf::Image img;
@@ -12,10 +12,10 @@ class BackgroundSprite {
         sf::Sprite sprite;
         void init();
     public:
-        BackgroundSprite();
+        Background();
         sf::Sprite getSprite();
-};
+};  // End of the 'Background' class
 
-#endif /* BACKGROUND_SPRITE_H */
+#endif /* BACKGROUND_H */
 
 // END OF FILE

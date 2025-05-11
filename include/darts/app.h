@@ -3,12 +3,14 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "utils.h"
-#include "BackgroundSprite.h"
+#include "Background.h"
+#include "Koala.h"
 
 class App {
     private:
         sf::RenderWindow window;
-        BackgroundSprite background;
+        Background background;
+        Koala koala;
         void init();
     public:        
         App();  // Constructor
