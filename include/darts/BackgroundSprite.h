@@ -6,13 +6,13 @@
 
 class BackgroundSprite {
     protected:
-        const std::string img_path = BG_IMAGE;   
-    public:
-        BackgroundSprite();       
+        const std::string img_path = BG_IMAGE;
         sf::Image img;
         sf::Texture texture;
         sf::Sprite sprite;
         void init();
+    public:
+        BackgroundSprite();
         sf::Sprite getSprite();
 };
 
