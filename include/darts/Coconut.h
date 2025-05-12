@@ -11,12 +11,11 @@ class Coconut {
         sf::Texture texture;
         sf::Sprite sprite;
         int maxHeight;
-        int maxWidth;
-        bool collision = false;
-        bool collisionAudioPlayed = false;
+        int maxWidth;        
         void init();
     public:
         Coconut();
+        bool collision = false;
         void setMaxHeight(int maxHeight);
         void setMaxWidth(int maxWidth);
         sf::Sprite getSprite();

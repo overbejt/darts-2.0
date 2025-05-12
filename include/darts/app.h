@@ -1,21 +1,24 @@
 #ifndef APP_H
 #define APP_H
 #include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
 #include "utils.h"
 #include "Background.h"
 #include "Koala.h"
 #include "Coconut.h"
+#include "AudioService.h"
 
 class App {
     private:
+        bool isPaused = false;
         sf::RenderWindow window;
         Background background;
         Koala koala;
         Coconut coconut;
+        AudioService audio;
         void init();
-        void drawSprites();
         void checkForCollisions();
+        void drawSprites();
+        void pauseGame();
     public:        
         App();  // Constructor
         void run();

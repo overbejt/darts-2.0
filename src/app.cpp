@@ -1,6 +1,5 @@
 #include <iostream>
 #include <optional>
-#include "darts/utils.h"
 #include "darts/app.h"
 
 // Constructor
@@ -42,30 +41,65 @@ void App::checkForCollisions() {
     sf::FloatRect koalaBox = koala.getSprite().getGlobalBounds();
     sf::FloatRect coconutBox = coconut.getSprite().getGlobalBounds();
     if (std::optional intersection = koalaBox.findIntersection(coconutBox)) {
-        std::cout << "COLLISION" << std::endl;
+        if (!coconut.collision) {
+            coconut.collision = true;
+            audio.playCollision();
+        }
+    } else {
+        // If the collistion flag was toggled, reset it now that there's no longer a colision
+        if (coconut.collision) {
+            coconut.collision = false;
+        }
     }
 }  // End of the 'checkForCollisions' function
 
+void App::pauseGame() {
+    if (isPaused) {
+        // resume game
+        audio.playThemeSong();
+        isPaused = false;
+    } else {
+        // pause game
+        audio.pauseThemeSong();
+        isPaused = true;
+    }
+}  // End of the 'pauseGame' function
+
 void App::run() {
+    audio.playThemeSong();
     // run the program as long as the window is open
     while (window.isOpen()) {
         // check all the window's events that were triggered since the last iteration of the loop
-        while (const std::optional event = window.pollEvent()) {
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-                // left key is pressed: move our character
-                koala.move(-15.f);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-                // right key is pressed: move our character
-                koala.move(15.f);
-            }
+        while (const std::optional<sf::Event> event = window.pollEvent()) {            
             // "close requested" event: we close the window
             if (event->is<sf::Event::Closed>()) {
                 std::cout << "Goodbye" << std::endl;
                 window.close();  // breaks the loop
             }
+
+            if (event->is<sf::Event::KeyPressed>() 
+                && event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::Space) {
+                pauseGame();
+            }
+
+            // Prevent cheating by pausing and moving then resuming
+            if (!isPaused) {
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
+                    // left key is pressed: move our character
+                    koala.move(-15.f);
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
+                    // right key is pressed: move our character
+                    koala.move(15.f);
+                }
+            }
         }
         
+        // escape early if paused
+        if (isPaused) {
+            continue;
+        }
+
         drawSprites();
         checkForCollisions();
     }

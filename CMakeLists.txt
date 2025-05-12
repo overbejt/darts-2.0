@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.31.3)
 
 project(darts LANGUAGES CXX)
 
-set(SOURCE_FILES src/main.cpp src/app.cpp src/Background.cpp src/Koala.cpp src/Coconut.cpp)
+set(SOURCE_FILES src/main.cpp src/app.cpp src/Background.cpp src/Koala.cpp src/Coconut.cpp src/AudioService.cpp)
 
 # Find SFML package
 # find_package(SFML REQUIRED)  # couldn't find it
@@ -23,7 +23,7 @@ add_executable(darts ${SOURCE_FILES})
 target_compile_features(darts PRIVATE cxx_std_17)
 
 # Link against SFML
-target_link_libraries(darts PRIVATE SFML::Graphics)
+target_link_libraries(darts PRIVATE SFML::Graphics SFML::Audio)
 
 # Include directories
 target_include_directories(darts PRIVATE include)

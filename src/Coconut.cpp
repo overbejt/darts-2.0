@@ -34,7 +34,7 @@ void Coconut::init() {
     // sprite.setPosition({300, 70});  // last known good
     // sprite.setOrigin(sprite.getLocalBounds().width / 2, sprite.getLocalBounds().height / 2);
 
-    // tmp for testing
+    // TODO tmp for testing
     sprite.setPosition({600, 70});
 }  // End of the 'init' funciton
 
@@ -68,7 +68,7 @@ void Coconut::move(float ammount) {
         position.y = 0;
         sprite.setPosition(position);
     }
-    std::cout << "x: " << position.x << " y: " << position.y << std::endl;
+    // std::cout << "x: " << position.x << " y: " << position.y << std::endl;
 }  // End of the 'move' function
 
 // END OF FILE
