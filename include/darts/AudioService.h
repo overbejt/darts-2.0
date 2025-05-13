@@ -6,7 +6,8 @@
 class AudioService {
     public:
         AudioService();
-        void pauseThemeSong();
+        void stopThemeSong();
+        void pauseThemeSong();        
         void playCollision();
         void playThemeSong();
 

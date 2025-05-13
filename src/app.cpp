@@ -28,9 +28,22 @@ void App::drawSprites() {
     window.draw(koala.getSprite());
     // Want the cocont to render on top of the kola when there's a collision
     window.draw(coconut.getSprite());
+    text.drawLives(window, lives);
+    
+    // TODO Don't like it.  Make it match the pattern used by the sprites
+    // Unsure if I prefer to have the text service draw or not.  Doesn't reduce lines in here any
+    if (isPaused) {
+        text.drawPaused(window);
+    }
 
-    // Make the coconut fall
-    coconut.move(5);
+    if (!isPaused && !isGameOver) {
+        // Make the coconut fall
+        coconut.move(5);
+    }
+
+    if (isGameOver) {
+        text.drawGameOver(window);
+    }
 
     // end the current frame
     window.display();
@@ -43,6 +56,7 @@ void App::checkForCollisions() {
     if (std::optional intersection = koalaBox.findIntersection(coconutBox)) {
         if (!coconut.collision) {
             coconut.collision = true;
+            lives--;
             audio.playCollision();
         }
     } else {
@@ -52,6 +66,11 @@ void App::checkForCollisions() {
         }
     }
 }  // End of the 'checkForCollisions' function
+
+void App::gameOver() {
+    isGameOver = true;
+    audio.stopThemeSong();
+}  // End of the 'gameOver' function
 
 void App::pauseGame() {
     if (isPaused) {
@@ -83,7 +102,7 @@ void App::run() {
             }
 
             // Prevent cheating by pausing and moving then resuming
-            if (!isPaused) {
+            if (!isPaused && !isGameOver) {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
                     // left key is pressed: move our character
                     koala.move(-15.f);
@@ -94,10 +113,9 @@ void App::run() {
                 }
             }
         }
-        
-        // escape early if paused
-        if (isPaused) {
-            continue;
+
+        if (lives == 0) {
+            gameOver();
         }
 
         drawSprites();

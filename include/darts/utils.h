@@ -24,6 +24,9 @@ const std::string SPRITE_BG = "SPRITE_BG";
 const std::string SPRITE_KOALA = "SPTITE_KOALA";
 const std::string SPRITE_COCONUT = "SPRITE_COCONUT";
 
+// Shared constants
+const int MAX_LIVES = 6;
+
 #endif /* UTILS_H */
 
 // END OF FILE

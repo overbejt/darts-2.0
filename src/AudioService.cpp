@@ -15,6 +15,10 @@ void AudioService::init() {
     themeSong.setLooping(true);
 }  // End of the 'init' function
 
+void AudioService::stopThemeSong() {
+    themeSong.stop();
+}  // End of the 'stopThemeSong' function
+
 void AudioService::pauseThemeSong() {
     themeSong.pause();
 }  // End of the 'pauseThemeSong' function

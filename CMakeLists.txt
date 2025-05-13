@@ -2,10 +2,18 @@ cmake_minimum_required(VERSION 3.31.3)
 
 project(darts LANGUAGES CXX)
 
-set(SOURCE_FILES src/main.cpp src/app.cpp src/Background.cpp src/Koala.cpp src/Coconut.cpp src/AudioService.cpp)
+set(SOURCE_FILES 
+    src/main.cpp 
+    src/app.cpp 
+    src/Background.cpp 
+    src/Koala.cpp 
+    src/Coconut.cpp 
+    src/AudioService.cpp
+    src/TextService.cpp
+)
 
 # Find SFML package
-# find_package(SFML REQUIRED)  # couldn't find it
+# find_package(SFML REQUIRED)  # couldn't find it even though brew installed
 
 # Plan B worked! 
 # Template can be found at https://github.com/SFML/cmake-sfml-project/blob/master/CMakeLists.txt
