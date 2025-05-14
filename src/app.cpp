@@ -43,7 +43,10 @@ void App::drawSprites() {
 
     if (isGameOver) {
         text.drawGameOver(window);
+        playBtn.drawRect(window);
+        exitBtn.drawRect(window);
     }
+
 
     // end the current frame
     window.display();
@@ -67,6 +70,31 @@ void App::checkForCollisions() {
     }
 }  // End of the 'checkForCollisions' function
 
+void App::checkOnNewGameClicked() {
+    // sf::Vector2f globalPosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition());
+    sf::Vector2f localPosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
+    // std::cout << "mx: " << localPosition.x << " my: " << localPosition.y << std::endl;
+    sf::FloatRect newGameBtnBox = playBtn.getGlobalBounds();
+    // std::cout << "bx0: " << newGameBtnBox.position.x << " bx1: " << newGameBtnBox.position.x + newGameBtnBox.size.x;
+    // std::cout << " by0: " << newGameBtnBox.position.y << " by1: " << newGameBtnBox.position.y + newGameBtnBox.size.y;
+    // std::cout << std::endl;
+    if (newGameBtnBox.contains(localPosition)) {
+        // TODO handle new game
+        std::cout << "New game btn clicked" << std::endl;
+        isGameOver = false;
+        lives = MAX_LIVES;
+        audio.playThemeSong();
+    } 
+}  // End of the 'checkOnNewGameClicked' function
+
+void App::checkOnExitGameClicked() {
+    sf::Vector2f localPosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
+    sf::FloatRect exitGameBtnBox = exitBtn.getGlobalBounds();
+    if (exitGameBtnBox.contains(localPosition)) {
+        window.close();
+    } 
+}  // End of the 'checkOnExitGameClicked' function
+
 void App::gameOver() {
     isGameOver = true;
     audio.stopThemeSong();
@@ -85,7 +113,9 @@ void App::pauseGame() {
 }  // End of the 'pauseGame' function
 
 void App::run() {
-    audio.playThemeSong();
+    if (!isGameOver) {
+        audio.playThemeSong();
+    }
     // run the program as long as the window is open
     while (window.isOpen()) {
         // check all the window's events that were triggered since the last iteration of the loop
@@ -98,7 +128,16 @@ void App::run() {
 
             if (event->is<sf::Event::KeyPressed>() 
                 && event->getIf<sf::Event::KeyPressed>()->code == sf::Keyboard::Key::Space) {
-                pauseGame();
+                if (!isGameOver) {
+                    pauseGame();
+                }
+            }
+
+            // Todo handle mouse clicks and check if buttons clicked
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+                // left mouse button is pressed
+                checkOnNewGameClicked();
+                checkOnExitGameClicked();
             }
 
             // Prevent cheating by pausing and moving then resuming

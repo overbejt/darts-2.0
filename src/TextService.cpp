@@ -25,8 +25,8 @@ void TextService::drawGameOver(sf::RenderWindow& window) {
     const sf::Vector2u windowSize = window.getSize();
     float newX = static_cast<float>(windowSize.x / 2.0);
     float newY = static_cast<float>(windowSize.y / 2.0);
-    newX -= 300; // yes
-    newY -= 200;  // Might need to go down a little further
+    newX -= 280;
+    newY -= 200;
     text.setPosition({newX, newY});
 
     window.draw(text);
@@ -81,8 +81,8 @@ void TextService::drawPaused(sf::RenderWindow& window) {
     const sf::Vector2u windowSize = window.getSize();
     float newX = static_cast<float>(windowSize.x / 2.0);
     float newY = static_cast<float>(windowSize.y / 2.0);
-    newX -= 200; // yes
-    newY -= 200;  // Might need to go down a little further
+    newX -= 200; 
+    newY -= 200;
     paused.setPosition({newX, newY});
     
     window.draw(paused);

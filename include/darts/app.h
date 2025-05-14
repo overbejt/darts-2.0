@@ -7,11 +7,13 @@
 #include "Coconut.h"
 #include "AudioService.h"
 #include "TextService.h"
+#include "NewGameButton.h"
+#include "ExitGameButton.h"
 
 class App {
     private:
         bool isPaused = false;
-        bool isGameOver = false;
+        bool isGameOver = true;
         int lives = MAX_LIVES;
         sf::RenderWindow window;
         Background background;
@@ -19,8 +21,13 @@ class App {
         Coconut coconut;
         AudioService audio;
         TextService text;
+        // TODO refactor the buttons out to a service
+        NewGameButton playBtn;
+        ExitGameButton exitBtn;
         void init();
         void checkForCollisions();
+        void checkOnNewGameClicked();
+        void checkOnExitGameClicked();
         void drawSprites();
         void gameOver();
         void pauseGame();

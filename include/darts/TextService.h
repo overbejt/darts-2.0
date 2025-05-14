@@ -6,11 +6,6 @@
 
 class TextService {
     private:
-        // int TEXT_LG = 38;
-        // int TEXT_LG = 125;
-        int TEXT_LG = 200;
-        int TEXT_MD = 50;
-        int TEXT_SM = 12;
         sf::Font regFont;
         sf::Font boldFont;
         void init();
