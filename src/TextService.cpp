@@ -51,7 +51,7 @@ void TextService::drawLives(sf::RenderWindow& window, int livesVal) {
     lives.setCharacterSize(TEXT_MD);
     setDefaultColor(lives);
 
-    // put it top right, left of the score
+    // put it top right
     const sf::Vector2u windowSize = window.getSize();
     float newX = static_cast<float>(windowSize.x / 2.0);
     float newY = static_cast<float>(windowSize.y / 2.0);
@@ -63,11 +63,23 @@ void TextService::drawLives(sf::RenderWindow& window, int livesVal) {
 }  // End of the 'updateLives' function
 
 void TextService::drawScore(sf::RenderWindow& window, int scoreVal) {
-    sf::Text score(regFont);
-    score.setString(std::to_string(scoreVal));
+    sf::Text score(boldFont);
+    score.setStyle(sf::Text::Bold);
+
+    std::stringstream ss;
+    ss << "Score: " << scoreVal;
+    score.setString(ss.str());
     score.setCharacterSize(TEXT_MD);
     setDefaultColor(score);
-    // TODO put it top right
+   
+    // put it top left
+    const sf::Vector2u windowSize = window.getSize();
+    float newX = static_cast<float>(windowSize.x / 2.0);
+    float newY = static_cast<float>(windowSize.y / 2.0);
+    newX -= 585;
+    newY -= 320;
+    score.setPosition({newX, newY});
+
     window.draw(score);
 }  // End of the 'updateScore' function
 

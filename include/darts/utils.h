@@ -26,6 +26,7 @@ const std::string SPRITE_COCONUT = "SPRITE_COCONUT";
 
 // Shared constants
 const int MAX_LIVES = 6;
+const int SCORE_INCREMENT = 5;
 const int TEXT_LG = 200;
 const int TEXT_MD = 50;
 const int TEXT_SM = 12;

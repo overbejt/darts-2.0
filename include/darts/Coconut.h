@@ -10,6 +10,8 @@ class Coconut {
         sf::Image img;
         sf::Texture texture;
         sf::Sprite sprite;
+        const int imgHeight = 82;
+        const int imgWidth = 82;
         int maxHeight;
         int maxWidth;        
         void init();
@@ -19,8 +21,9 @@ class Coconut {
         void setMaxHeight(int maxHeight);
         void setMaxWidth(int maxWidth);
         sf::Sprite getSprite();
-        int getRandomX();
+        float getRandomX();
         void move(float ammount);
+        bool scoredPoint();
 };  // End of the 'Coconut' class
 
 #endif /* COCONUT_H */

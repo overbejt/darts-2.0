@@ -15,6 +15,7 @@ class App {
         bool isPaused = false;
         bool isGameOver = true;
         int lives = MAX_LIVES;
+        int score = 0;
         sf::RenderWindow window;
         Background background;
         Koala koala;

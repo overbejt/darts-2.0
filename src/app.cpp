@@ -29,6 +29,7 @@ void App::drawSprites() {
     // Want the cocont to render on top of the kola when there's a collision
     window.draw(coconut.getSprite());
     text.drawLives(window, lives);
+    text.drawScore(window, score);
     
     // TODO Don't like it.  Make it match the pattern used by the sprites
     // Unsure if I prefer to have the text service draw or not.  Doesn't reduce lines in here any
@@ -46,7 +47,6 @@ void App::drawSprites() {
         playBtn.drawRect(window);
         exitBtn.drawRect(window);
     }
-
 
     // end the current frame
     window.display();
@@ -71,18 +71,13 @@ void App::checkForCollisions() {
 }  // End of the 'checkForCollisions' function
 
 void App::checkOnNewGameClicked() {
-    // sf::Vector2f globalPosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition());
     sf::Vector2f localPosition = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
-    // std::cout << "mx: " << localPosition.x << " my: " << localPosition.y << std::endl;
     sf::FloatRect newGameBtnBox = playBtn.getGlobalBounds();
-    // std::cout << "bx0: " << newGameBtnBox.position.x << " bx1: " << newGameBtnBox.position.x + newGameBtnBox.size.x;
-    // std::cout << " by0: " << newGameBtnBox.position.y << " by1: " << newGameBtnBox.position.y + newGameBtnBox.size.y;
-    // std::cout << std::endl;
     if (newGameBtnBox.contains(localPosition)) {
-        // TODO handle new game
-        std::cout << "New game btn clicked" << std::endl;
+        // Set things up for a new game
         isGameOver = false;
         lives = MAX_LIVES;
+        score = 0;
         audio.playThemeSong();
     } 
 }  // End of the 'checkOnNewGameClicked' function
@@ -116,7 +111,7 @@ void App::run() {
     if (!isGameOver) {
         audio.playThemeSong();
     }
-    // run the program as long as the window is open
+    // game loop
     while (window.isOpen()) {
         // check all the window's events that were triggered since the last iteration of the loop
         while (const std::optional<sf::Event> event = window.pollEvent()) {            
@@ -133,7 +128,7 @@ void App::run() {
                 }
             }
 
-            // Todo handle mouse clicks and check if buttons clicked
+            // handle mouse clicks and check if buttons clicked
             if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
                 // left mouse button is pressed
                 checkOnNewGameClicked();
@@ -153,13 +148,19 @@ void App::run() {
             }
         }
 
+        // Handle game over 
         if (lives == 0) {
             gameOver();
         }
 
+        // Update the score if needed
+        if (coconut.scoredPoint()) {
+            score += SCORE_INCREMENT;
+        }
+
         drawSprites();
         checkForCollisions();
-    }
+    }  // End of the game loop
 } // End of the 'run' function
 
 // END OF FILE

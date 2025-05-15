@@ -10,7 +10,6 @@ class TextService {
         sf::Font boldFont;
         void init();
     public:
-        // TODO Might need to create some buttons if they don't come stock
         TextService();
         void drawGameOver(sf::RenderWindow& window);
         void drawLives(sf::RenderWindow& window, int lives);
