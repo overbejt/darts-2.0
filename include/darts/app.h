@@ -14,17 +14,17 @@ class App {
     private:
         bool isPaused = false;
         bool isGameOver = true;
-        int lives = MAX_LIVES;
+        int lives = darts::MAX_LIVES;
         int score = 0;
         sf::RenderWindow window;
-        Background background;
-        Koala koala;
-        Coconut coconut;
+        Background background = Background(darts::img::BACKGROUND);
+        Koala koala = Koala(darts::img::KOALA);
+        Coconut coconut = Coconut(darts::img::COCONUT);
         AudioService audio;
         TextService text;
         // TODO refactor the buttons out to a service
-        NewGameButton playBtn;
-        ExitGameButton exitBtn;
+        NewGameButton playBtn = NewGameButton("New Game");
+        ExitGameButton exitBtn = ExitGameButton("Exit Game");
         void init();
         void checkForCollisions();
         void checkOnNewGameClicked();

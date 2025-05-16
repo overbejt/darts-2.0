@@ -3,18 +3,14 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "utils.h"
+#include "EzSprite.h"
 
-class Koala {
+class Koala : public EzSprite {
     protected:
-        const std::string img_path = KOALA;
-        sf::Image img;
-        sf::Texture texture;
-        sf::Sprite sprite;
-        void init();
+        void init() override;
     public:
-        Koala();
-        sf::Sprite getSprite();
-        void move(float ammount);
+        Koala(std::string image_path);
+        void move(float ammount) override;
 };  // End of the 'Koala' class
 
 #endif /* KOALA_H */

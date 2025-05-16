@@ -6,10 +6,10 @@ AudioService::AudioService() : collisionAudio(collisionBuffer) {
 }  // End of the 'constructor' 
 
 void AudioService::init() {
-    if (!collisionBuffer.loadFromFile(BONK)) {
+    if (!collisionBuffer.loadFromFile(darts::audio::BONK)) {
         std::cerr << "Failed to load collision sound!" << std::endl;
     }
-    if (!themeSong.openFromFile(THEME_SONG)) {
+    if (!themeSong.openFromFile(darts::audio::THEME_SONG)) {
         std::cerr << "Failed to load them song!" << std::endl;
     }
     themeSong.setLooping(true);

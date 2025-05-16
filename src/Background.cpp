@@ -2,7 +2,8 @@
 #include "darts/Background.h"
 
 // Constructor
-Background::Background() : img(), texture(), sprite(texture) {
+Background::Background(std::string img_path) {
+    this->img_path = img_path;
     this->init();
 }  // End of the 'constructor'
 
@@ -24,8 +25,8 @@ void Background::init() {
     sprite.setTextureRect(sf::IntRect({0, 0}, {1200, 647}));
 }  // End of the 'init' funciton
 
-sf::Sprite Background::getSprite() {
-    return sprite;
-}  // End of the 'getSprite' function
+void Background::move(float ammount) {
+    return;  // Do nothing 
+}  // End of the 'move' function
 
 // END OF FILE

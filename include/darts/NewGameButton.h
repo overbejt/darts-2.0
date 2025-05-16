@@ -2,19 +2,15 @@
 #define NEW_GAME_BUTTON_H
 #include <string>
 #include <SFML/Graphics.hpp>
-#include "TextService.h"
+#include "EzButton.h"
 
-class NewGameButton {
-    protected:        
-        sf::Font regFont;
-        const std::string msg = "New Game";
-        sf::Vector2f rSize = {120.f, 40.f};
-        sf::RectangleShape rect;
-        void init();
+class NewGameButton : public EzButton {
+    protected:
+        void init() override;
     public:
-        NewGameButton();
-        void drawRect(sf::RenderWindow& window);
-        sf::FloatRect getGlobalBounds();
+        NewGameButton(std::string msg);
+        void drawRect(sf::RenderWindow& window) override;
+        sf::FloatRect getGlobalBounds() override;
 };
 
 #endif /* NEW_GAME_BUTTON_H */

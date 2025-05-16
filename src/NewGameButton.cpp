@@ -1,16 +1,17 @@
 #include <iostream>
 #include "darts/NewGameButton.h"
 
-NewGameButton::NewGameButton() : rect(rSize) {
+NewGameButton::NewGameButton(std::string msg) {
+    this->msg = msg;
     this->init();
 }  // End of the 'NewGameButton' function
 
 void NewGameButton::init() {
-    if (!regFont.openFromFile(FONT_REGULAR)) {
+    if (!regFont.openFromFile(darts::font::FONT_REGULAR)) {
         std::cerr << "Failed to load regular font!" << std::endl;
     }
     
-    rect.setSize({200.f, 100.f});
+    rect.setSize(darts::buttonRectangleSize);
     rect.setFillColor(sf::Color::Black);
 }  // End of the 'init' function
 
@@ -35,7 +36,7 @@ void NewGameButton::drawRect(sf::RenderWindow& window) {
     sf::Text text(regFont);
     text.setFont(regFont);
     text.setFillColor(sf::Color::White);
-    text.setCharacterSize(TEXT_MD);
+    text.setCharacterSize(darts::TEXT_SM);
     text.setString(msg);
     text.setPosition(textPos);
     window.draw(text);

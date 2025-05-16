@@ -2,7 +2,8 @@
 #include "darts/Koala.h"
 
 // Constructor
-Koala::Koala() : img(), texture(), sprite(texture) {
+Koala::Koala(std::string image_path) {
+    img_path = image_path;
     this->init();
 }  // End of the 'constructor'
 
@@ -26,10 +27,6 @@ void Koala::init() {
     // Perfect.  Just a little right of center
     sprite.setPosition({600.f, (647-125)});
 }  // End of the 'init' funciton
-
-sf::Sprite Koala::getSprite() {
-    return sprite;
-}  // End of the 'getSprite' function
 
 void Koala::move(float ammount) {
     sprite.move({ammount, 0.f});

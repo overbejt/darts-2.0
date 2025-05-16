@@ -7,10 +7,10 @@ TextService::TextService() {
 }  // End of the constructor
 
 void TextService::init() {
-    if (!regFont.openFromFile(FONT_REGULAR)) {
+    if (!regFont.openFromFile(darts::font::FONT_REGULAR)) {
         std::cerr << "Failed to load regular font!" << std::endl;
     }
-    if (!boldFont.openFromFile(FONT_BOLD)) {
+    if (!boldFont.openFromFile(darts::font::FONT_BOLD)) {
         std::cerr << "Failed to load bold font!" << std::endl;
     }
 }  // End of the 'init' function
@@ -18,7 +18,7 @@ void TextService::init() {
 void TextService::drawGameOver(sf::RenderWindow& window) {
     sf::Text text(regFont);
     text.setString("Game Over");
-    text.setCharacterSize(TEXT_LG);
+    text.setCharacterSize(darts::TEXT_LG);
     setDefaultColor(text);
     
     // Move it to the center of the screen
@@ -38,8 +38,8 @@ void TextService::drawLives(sf::RenderWindow& window, int livesVal) {
     
     std::stringstream ss;
     // padd start of string with spaces so it 'floats right' the text
-    if (livesVal < MAX_LIVES) {
-        for (int j = 0; j <= (MAX_LIVES - livesVal); j++) {
+    if (livesVal < darts::MAX_LIVES) {
+        for (int j = 0; j <= (darts::MAX_LIVES - livesVal); j++) {
             ss << " ";
         }
     }
@@ -48,7 +48,7 @@ void TextService::drawLives(sf::RenderWindow& window, int livesVal) {
     }
 
     lives.setString(ss.str());
-    lives.setCharacterSize(TEXT_MD);
+    lives.setCharacterSize(darts::TEXT_SM);
     setDefaultColor(lives);
 
     // put it top right
@@ -69,7 +69,7 @@ void TextService::drawScore(sf::RenderWindow& window, int scoreVal) {
     std::stringstream ss;
     ss << "Score: " << scoreVal;
     score.setString(ss.str());
-    score.setCharacterSize(TEXT_MD);
+    score.setCharacterSize(darts::TEXT_SM);
     setDefaultColor(score);
    
     // put it top left
@@ -86,7 +86,7 @@ void TextService::drawScore(sf::RenderWindow& window, int scoreVal) {
 void TextService::drawPaused(sf::RenderWindow& window) {
     sf::Text paused(regFont);
     paused.setString("Paused...");
-    paused.setCharacterSize(TEXT_LG);
+    paused.setCharacterSize(darts::TEXT_LG);
     setDefaultColor(paused);
 
     // Move it to the center of the screen

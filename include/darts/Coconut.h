@@ -3,26 +3,22 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "utils.h"
+#include "EzSprite.h"
 
-class Coconut {
+class Coconut : public EzSprite {
     protected:
-        const std::string img_path = COCONUT;
-        sf::Image img;
-        sf::Texture texture;
-        sf::Sprite sprite;
         const int imgHeight = 82;
         const int imgWidth = 82;
         int maxHeight;
         int maxWidth;        
-        void init();
+        void init() override;
     public:
-        Coconut();
+        Coconut(std::string image_path);
         bool collision = false;
         void setMaxHeight(int maxHeight);
         void setMaxWidth(int maxWidth);
-        sf::Sprite getSprite();
         float getRandomX();
-        void move(float ammount);
+        void move(float ammount) override;
         bool scoredPoint();
 };  // End of the 'Coconut' class
 

@@ -24,22 +24,20 @@ void App::drawSprites() {
 
     // draw everything here...
     // Draw the background
-    window.draw(background.getSprite());
-    window.draw(koala.getSprite());
+    background.draw(window);
+    koala.draw(window);
     // Want the cocont to render on top of the kola when there's a collision
-    window.draw(coconut.getSprite());
+    coconut.draw(window);
     text.drawLives(window, lives);
     text.drawScore(window, score);
     
-    // TODO Don't like it.  Make it match the pattern used by the sprites
-    // Unsure if I prefer to have the text service draw or not.  Doesn't reduce lines in here any
     if (isPaused) {
         text.drawPaused(window);
     }
 
     if (!isPaused && !isGameOver) {
         // Make the coconut fall
-        coconut.move(5);
+        coconut.move(darts::COCONUT_SPEED);
     }
 
     if (isGameOver) {
@@ -54,8 +52,8 @@ void App::drawSprites() {
 
 void App::checkForCollisions() {
     // Check for collision
-    sf::FloatRect koalaBox = koala.getSprite().getGlobalBounds();
-    sf::FloatRect coconutBox = coconut.getSprite().getGlobalBounds();
+    sf::FloatRect koalaBox = koala.getGlobalBounds();
+    sf::FloatRect coconutBox = coconut.getGlobalBounds();
     if (std::optional intersection = koalaBox.findIntersection(coconutBox)) {
         if (!coconut.collision) {
             coconut.collision = true;
@@ -76,7 +74,7 @@ void App::checkOnNewGameClicked() {
     if (newGameBtnBox.contains(localPosition)) {
         // Set things up for a new game
         isGameOver = false;
-        lives = MAX_LIVES;
+        lives = darts::MAX_LIVES;
         score = 0;
         audio.playThemeSong();
     } 
@@ -139,11 +137,11 @@ void App::run() {
             if (!isPaused && !isGameOver) {
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
                     // left key is pressed: move our character
-                    koala.move(-15.f);
+                    koala.move(-darts::KOALA_SPEED);
                 }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
                     // right key is pressed: move our character
-                    koala.move(15.f);
+                    koala.move(darts::KOALA_SPEED);
                 }
             }
         }
@@ -155,7 +153,7 @@ void App::run() {
 
         // Update the score if needed
         if (coconut.scoredPoint()) {
-            score += SCORE_INCREMENT;
+            score += darts::SCORE_INCREMENT;
         }
 
         drawSprites();

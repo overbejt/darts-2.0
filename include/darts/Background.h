@@ -3,17 +3,14 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "utils.h"
+#include "EzSprite.h"
 
-class Background {
+class Background : public EzSprite {
     protected:
-        const std::string img_path = BG_IMAGE;
-        sf::Image img;
-        sf::Texture texture;
-        sf::Sprite sprite;
-        void init();
+        void init() override;
     public:
-        Background();
-        sf::Sprite getSprite();
+        Background(std::string img_path);
+        void move(float ammount) override;
 };  // End of the 'Background' class
 
 #endif /* BACKGROUND_H */

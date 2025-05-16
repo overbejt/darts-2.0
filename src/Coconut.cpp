@@ -3,7 +3,8 @@
 #include "darts/Coconut.h"
 
 // Constructor
-Coconut::Coconut() : img(), texture(), sprite(texture) {
+Coconut::Coconut(std::string image_path) {
+    img_path = image_path;
     this->init();
 }  // End of the 'constructor'
 
@@ -44,10 +45,6 @@ void Coconut::setMaxWidth(int maxWidth) {
     this->maxWidth = maxWidth;
 }  // End of the 'setMaxWidth' function
 
-sf::Sprite Coconut::getSprite() {
-    return sprite;
-}  // End of the 'getSprite' function
-
 float Coconut::getRandomX() {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -82,7 +79,6 @@ bool Coconut::scoredPoint() {
         // no way the play can score
         return false;
     }
-
 }  // End of the 'scoredPoint' function
 
 // END OF FILE
